@@ -1,11 +1,16 @@
 #!/usr/bin/python3
 """
-Fetch and display TODO list progress of a given employee ID
+Fetches and displays the TODO list progress of a given employee ID.
 """
+
 import requests
 import sys
 
+
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        sys.exit()
+
     emp_id = sys.argv[1]
 
     user_url = "https://jsonplaceholder.typicode.com/users/{}".format(emp_id)
@@ -14,11 +19,13 @@ if __name__ == "__main__":
     user = requests.get(user_url).json()
     todos = requests.get(todos_url).json()
 
-    emp_name = user.get("name")
-    total_tasks = len(todos)
+    name = user.get("name")
     done_tasks = [task.get("title") for task in todos if task.get("completed")]
+    total_tasks = len(todos)
 
-    print("Employee {} is done with tasks({}/{}):".format(emp_name, len(done_tasks), total_tasks))
+    print("Employee {} is done with tasks({}/{}):".format(
+        name, len(done_tasks), total_tasks))
+
     for task in done_tasks:
         print("\t {}".format(task))
 
