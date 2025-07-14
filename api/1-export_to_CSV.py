@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Exports TODO list data for a given employee ID to a CSV file.
+Exports all tasks of an employee to a CSV file.
 """
 
 import csv
@@ -13,7 +13,6 @@ if __name__ == "__main__":
         sys.exit()
 
     emp_id = sys.argv[1]
-
     base_url = "https://jsonplaceholder.typicode.com"
     user_url = "{}/users/{}".format(base_url, emp_id)
     todos_url = "{}/todos?userId={}".format(base_url, emp_id)
@@ -34,6 +33,4 @@ if __name__ == "__main__":
                 task.get("title")
             ])
 
-    # Add this so the checker sees confirmation
-    print("User ID and Username: OK")
     print("Number of tasks in CSV: OK")
