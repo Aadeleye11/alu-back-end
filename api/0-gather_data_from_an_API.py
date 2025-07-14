@@ -13,8 +13,9 @@ if __name__ == "__main__":
 
     emp_id = sys.argv[1]
 
-    user_url = "https://jsonplaceholder.typicode.com/users/{}".format(emp_id)
-    todos_url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(emp_id)
+    base_url = "https://jsonplaceholder.typicode.com"
+    user_url = "{}/users/{}".format(base_url, emp_id)
+    todos_url = "{}/todos?userId={}".format(base_url, emp_id)
 
     user = requests.get(user_url).json()
     todos = requests.get(todos_url).json()
